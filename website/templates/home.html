@@ -1,0 +1,87 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+  %}
+  <h1 align="center">Minute Taker</h1>
+  
+  
+  <table class="table">
+    <tr>
+      <th style="width: 100px;">Date</th>
+      <th style="width: 50px;">Topic</th>
+      <th style="width: 100px;">Attendees</th>
+      <th style="width: 100px;">Raised by</th>
+      <th style="width: 100px;">Action/s required</th>
+      <th style="width: 100px;">To be actioned by</th>
+  
+      <th style="width: 100px;">Subsequent Information</th>
+      <th style="width: 100px;">Date of completion</th>
+      <th style="width: 100px;"></th>
+    </tr>
+    {% for note in user.notes %}
+    <tr>
+      <td>{{ note.Dates }}</td>
+      <td>{{ note.Topic }}</td>
+      <td>{{ note.Attendees }}</td>
+      <td>{{ note.Raisedby }}</td>
+      <td>{{ note.Actionrequired }}</td>
+      <td>{{ note.Actionedby }}</td>
+      <td>{{ note.Information }}</td>
+      <td>{{ note.Dateofcompletion }}</td>
+      <td><a href="{{url_for('views.delete', id=note.id)}}">delete</a></td>
+    </tr>
+   
+    {% endfor %}
+  </table>
+  
+  <form method="POST">
+    <div class="row" align="center">
+    <div class="form-group">
+   <label for="start">Start date:</label><br>
+  
+  <input type="date" name="note.dates" id="note.dates" style="height: 38px; ;"
+         value="2022-08-22"
+         min="2022-01-01" max="2022-12-31">
+  
+  
+  </div> 
+  <div class="form-group">
+    <label for="topic">Topic:</label></br> 
+      <input name="note.topic" id="note.topic" class="form-control" style="width: 100px;"></input>
+    </div>
+    <div class="form-group">
+        <label for="Attendees">Attendees:</label></br>
+        <input name="note.Attendees" id="note.Attendees" class="form-control" style="width: 100px;"></input>
+      </div>
+      <div class="form-group">
+        <label for="Raisedby">Raised by:</label></br>
+        <input name="note.Raisedby" id="note.Raisedby" class="form-control" style="width: 100px;"></input> 
+      </div>
+      <div class="form-group">
+        <label for="Actionrequired">Action required:</label></br>
+        <input name="note.Actionrequired" id="note.Actionrequired" class="form-control" style="width: 110px;"></input>
+      </div>
+      <div class="form-group">
+        <label for="Actionedby">Actioned by:</label></br>
+        <input name="note.Actionedby" id="note.Actionedby" class="form-control" style="width: 100px;"></input>
+      </div>
+      <div class="form-group">
+        <label for="Information ">Information</label></br>
+        <input name="note.Information" id="note.Information" class="form-control" style="width: 110px;"></input>
+      </div>
+      <div class="form-group">
+        <label for="Dateofcompletion">Date of completion:</label></br>
+  
+        <input type="date" name="note.Dateofcompletion" id="note.Dateofcompletion" style="height: 37px; ;"
+         value="2022-08-22"
+         min="2022-01-01" max="2025-12-31">
+      </div>
+    </br>
+  
+    </div>
+    <div align="center">
+      <button type="submit" class="btn btn-primary">Add Note</button>
+    </div>
+  
+  </form>
+  
+  
+  {% endblock %}
